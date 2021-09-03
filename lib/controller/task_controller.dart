@@ -7,6 +7,9 @@ import 'package:to_do/models/note_model.dart';
 class TaskController extends GetxController {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController updateTitleController = TextEditingController();
+
+  TextEditingController updateDescriptionController = TextEditingController();
 
   List<NoteModel> pendingTaskList = [];
   List<NoteModel> processingTaskList = [];

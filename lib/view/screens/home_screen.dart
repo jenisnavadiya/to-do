@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:to_do/controller/task_controller.dart';
 import 'package:to_do/firebase/auth_firebase.dart';
 import 'package:to_do/utilities/route_utils.dart';
+import 'package:to_do/view/screens/edit_task_for_processing.dart';
+import 'package:to_do/view/screens/edit_task_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -80,17 +82,22 @@ class PendingScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: _taskController.pendingTaskList.length,
             itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(_taskController.pendingTaskList[index].title!),
-                subtitle:
-                    Text(_taskController.pendingTaskList[index].description!),
-                trailing: IconButton(
-                    onPressed: () async {
-                      await AuthFirebase.updateStatus(
-                          _taskController.pendingTaskList[index].id!,
-                          'PROCESSING');
-                    },
-                    icon: Icon(Icons.arrow_forward_ios)),
+              return GestureDetector(
+                onTap: () {
+                  Get.to(() => EditTaskScreen(index: index));
+                },
+                child: ListTile(
+                  title: Text(_taskController.pendingTaskList[index].title!),
+                  subtitle:
+                      Text(_taskController.pendingTaskList[index].description!),
+                  trailing: IconButton(
+                      onPressed: () async {
+                        await AuthFirebase.updateStatus(
+                            _taskController.pendingTaskList[index].id!,
+                            'PROCESSING');
+                      },
+                      icon: Icon(Icons.arrow_forward_ios)),
+                ),
               );
             },
           );
@@ -115,17 +122,22 @@ class ProcessingScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: _taskController.processingTaskList.length,
             itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(_taskController.processingTaskList[index].title!),
-                subtitle: Text(
-                    _taskController.processingTaskList[index].description!),
-                trailing: IconButton(
-                    onPressed: () async {
-                      await AuthFirebase.updateStatus(
-                          _taskController.processingTaskList[index].id!,
-                          'COMPLETE');
-                    },
-                    icon: Icon(Icons.arrow_forward_ios)),
+              return GestureDetector(
+                onTap: () {
+                  Get.to(() => EditTaskScreenForProcessing(index: index));
+                },
+                child: ListTile(
+                  title: Text(_taskController.processingTaskList[index].title!),
+                  subtitle: Text(
+                      _taskController.processingTaskList[index].description!),
+                  trailing: IconButton(
+                      onPressed: () async {
+                        await AuthFirebase.updateStatus(
+                            _taskController.processingTaskList[index].id!,
+                            'COMPLETE');
+                      },
+                      icon: Icon(Icons.arrow_forward_ios)),
+                ),
               );
             },
           );

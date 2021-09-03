@@ -13,7 +13,7 @@ class NoteModel {
     this.id,
   });
 
-  final String? title;
+  String? title;
   final String? description;
   final String? noteState;
   final String? id;

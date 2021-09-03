@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:to_do/bindings/auth_bindings.dart';
 import 'package:to_do/bindings/task_binding.dart';
 import 'package:to_do/view/screens/add_task_screen.dart';
+import 'package:to_do/view/screens/edit_task_screen.dart';
 import 'package:to_do/view/screens/home_screen.dart';
 import 'package:to_do/view/screens/login_screen.dart';
 import 'package:to_do/view/screens/signin_screen.dart';
@@ -14,6 +15,7 @@ class RouteUtilities {
   static const String signinScreen = "/signinScreen";
   static const String homeScreen = "/homeScreen";
   static const String addTaskScreen = "/addTaskScreen";
+  static const String editTaskScreen = "/editTaskScreen";
 
   static List<GetPage> pages = [
     GetPage(
@@ -40,5 +42,10 @@ class RouteUtilities {
       page: () => AddTaskScreen(),
       binding: TaskBindings(),
     ),
+    // GetPage(
+    //   name: editTaskScreen,
+    //   page: () => EditTaskScreen(),
+    //   binding: TaskBindings(),
+    // ),
   ];
 }

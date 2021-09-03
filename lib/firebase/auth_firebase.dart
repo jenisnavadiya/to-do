@@ -54,6 +54,15 @@ class AuthFirebase {
         .update({"noteState": status});
   }
 
+  static updateTasks(String docId, String title, String description) async {
+    await FirebaseManager.firestoreInstance
+        .collection(FirebaseCollections.userCollection)
+        .doc(FirebaseManager.authInstance.currentUser!.uid)
+        .collection('Notes')
+        .doc(docId)
+        .update({'title': title, 'description': description});
+  }
+
   static Future<void> removeNotes(String docId) async {
     await FirebaseManager.firestoreInstance
         .collection(FirebaseCollections.userCollection)
